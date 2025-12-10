@@ -15,9 +15,11 @@ class RegisterController extends GetxController {
   var phoneController = TextEditingController();
   var nameController = TextEditingController();
   var passwordController = TextEditingController();
+  var passwordConfirmController = TextEditingController();
 
   var isLoading = false.obs;
   var isSecureText = true.obs;
+  var isSecureTextConfirm = true.obs;
   var isValidationError = false.obs;
   var errorMessage = "".obs;
 
@@ -49,8 +51,10 @@ class RegisterController extends GetxController {
           AppRoutes.HOME,
         );
       } else {
-        errorMessage(response.message);
-        isValidationError(true);
+        Snackbarmessage.instance.showErrorSnackbar(
+          title: 'Pendaftaran Gagal',
+          message: response.message ?? '-',
+        );
       }
     } else {
       Get.showSnackbar(GetSnackBar(

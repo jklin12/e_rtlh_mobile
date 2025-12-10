@@ -4,12 +4,16 @@
 
 import 'dart:convert';
 
+import 'banner_model.dart';
+import 'menu_model.dart';
+ 
+
 HomeModel homeModelFromJson(String str) => HomeModel.fromJson(json.decode(str));
 
 
 class HomeModel {
-  List<dynamic> banner;
-  List<Menu> menus;
+  List<BannerModel> banner;
+  List<MenuModel> menus;
 
   HomeModel({
     this.banner = const [],
@@ -17,36 +21,13 @@ class HomeModel {
   });
 
   factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
-    banner: json["banner"] != null
-        ? List<dynamic>.from(json["banner"].map((x) => x))
-        : [],
+    banner:  json["banner"] == null ? [] : List<BannerModel>.from(json["banner"]!.map((x) => BannerModel.fromJson(x))),
+        
     menus: json["menus"] != null
-        ? List<Menu>.from(json["menus"].map((x) => Menu.fromJson(x)))
+        ? List<MenuModel>.from(json["menus"].map((x) => MenuModel.fromJson(x)))
         : [],
   );
 }
 
 
-class Menu {
-    String title;
-    String icon;
-    String route;
 
-    Menu({
-        required this.title,
-        required this.icon,
-        required this.route,
-    });
-
-    factory Menu.fromJson(Map<String, dynamic> json) => Menu(
-        title: json["title"],
-        icon: json["icon"],
-        route: json["route"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "title": title,
-        "icon": icon,
-        "route": route,
-    };
-}

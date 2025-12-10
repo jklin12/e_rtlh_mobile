@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-const colorPrimary = Color(0xFF283478);
-const colorPrimaryOpacity8 = Color.fromRGBO(40, 52, 120,0.8);
-const colorPrimaryOpacity6 = Color.fromRGBO(40, 52, 120,0.6);
-const colorSecondary = Color(0XFF6C757D);
-const colorSecondaryOpacity8 = Color.fromRGBO(108, 117, 125, 0.8);
-const colorSuccess = Color(0XFF198754);
-const colorDanger = Color(0XFFDC3545 );
+const colorPrimary = Color(0xFF2E6B65); // Warna hijau kebiruan tua dari gradient
+const colorPrimaryOpacity8 = Color.fromRGBO(46, 107, 101, 0.8);
+const colorPrimaryOpacity6 = Color.fromRGBO(46, 107, 101, 0.6);
+const colorSecondary = Color(0xFF1B3A62); // Warna biru tua dari gradient bawah
+const colorSecondaryOpacity8 = Color.fromRGBO(27, 58, 98, 0.8);
+const colorSuccess = Color(0XFF198754); // Tetap menggunakan standar hijau untuk Success
+const colorDanger = Color(0XFFDC3545 ); // Tetap menggunakan standar merah untuk Danger
 
 const colorAliceBlue = Color(0xFFEFF4FF);
 const colorJaguar = Color(0xFF232227);

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../core/services/sercuce_storage/secure_storage_manager.dart';
 import '../../core/utils/preference_constant.dart';
+import '../../core/widget/snacbar_message.dart';
 import '../../data/repository/user_repository.dart';
 
 class HomeController extends GetxController {
@@ -24,6 +25,11 @@ class HomeController extends GetxController {
     var response = await userRepository.home(userToken ?? '');
     if (response!.status == 'success') {
       home.value = response.data!;
+    } else {
+      Snackbarmessage.instance.showErrorSnackbar(
+        title: 'Error',
+        message: response.message ?? 'Username / Password salah',
+      );
     }
 
     isLoading(false);

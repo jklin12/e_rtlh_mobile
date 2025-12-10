@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'assetes.dart'; 
+import 'assetes.dart';
 import 'colors.dart';
 
 TextStyle selectedMainMenuStyle = const TextStyle(
@@ -17,7 +17,7 @@ TextStyle unselectedMainMenuStyle = const TextStyle(
 );
 
 TextStyle labelTitleStyle = const TextStyle(
-  fontFamily: 'Gilroy',
+  fontFamily: 'Montserrat',
   color: colorDark,
   fontSize: 14,
   fontWeight: FontWeight.w700,
@@ -26,7 +26,7 @@ TextStyle optionalTextStyle = const TextStyle(
   color: colorDark,
   fontSize: 14.0,
   fontWeight: FontWeight.w500,
-  fontFamily: 'Gilroy',
+  fontFamily: 'Montserrat',
   fontStyle: FontStyle.italic,
 );
 
@@ -34,12 +34,18 @@ TextStyle dropdownTextStyle = const TextStyle(
   color: colorDark,
   fontSize: 14.0,
   fontWeight: FontWeight.w500,
-  fontFamily: 'Gilroy',
+  fontFamily: 'Montserrat',
 );
 
 TextStyle titleStyle = const TextStyle(
   color: colorJaguar,
   fontSize: 20.0,
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle subTitleStyle = const TextStyle(
+  color: colorJaguar,
+  fontSize: 18.0,
   fontWeight: FontWeight.bold,
 );
 
@@ -57,11 +63,7 @@ InputDecoration passwordInputDecoration({
   return InputDecoration(
     hintText: hintText,
     errorMaxLines: 3,
-    hintStyle: const TextStyle(
-      fontSize: 14,
-      color: colorGreyLight,
-      fontWeight: FontWeight.w500,
-    ),
+    hintStyle: hintTextStyle,
     suffixIcon: InkWell(
       onTap: togglePassword,
       child: SvgPicture.asset(
@@ -89,13 +91,13 @@ TextStyle valueTextStyle = const TextStyle(
 );
 
 TextStyle requiredMarkStyle = const TextStyle(
-  fontFamily: 'Gilroy',
+  fontFamily: 'Montserrat',
   color: colorRed,
   fontSize: 14,
   fontWeight: FontWeight.w700,
 );
 TextStyle invalidInputStyle = const TextStyle(
-  fontFamily: 'Gilroy',
+  fontFamily: 'Montserrat',
   color: colorRed,
   fontSize: 12,
 );
@@ -104,17 +106,14 @@ TextStyle contentStyle = const TextStyle(
   color: colorGreyLight,
   fontSize: 14.0,
   fontWeight: FontWeight.w500,
-  fontFamily: 'Gilroy',
-  
+  fontFamily: 'Montserrat',
 );
 TextStyle textButtonStyle = const TextStyle(
   color: colorBlue,
   fontSize: 12.0,
   fontWeight: FontWeight.w500,
-  fontFamily: 'Gilroy',
+  fontFamily: 'Montserrat',
   decoration: TextDecoration.underline,
-
-  
 );
 
 TextStyle titlePrimaryW700 = const TextStyle(
@@ -124,7 +123,6 @@ TextStyle titlePrimaryW700 = const TextStyle(
 );
 
 TextStyle titlePrimaryW600 = const TextStyle(
-  
   fontSize: 14,
   color: colorPrimary,
   fontWeight: FontWeight.w600,
@@ -139,7 +137,6 @@ TextStyle contentSubTitleBigStyle = const TextStyle(
   color: colorGrey,
   fontWeight: FontWeight.w500,
 );
-
 
 TextStyle contentTitleStyle = const TextStyle(
   fontSize: 12,

@@ -2,11 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' as xxget;
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
-
-import '../../../routes/app_routes.dart';
 import '../../config/falvor_config.dart';
-import '../../global/base_model.dart';
-import '../../widget/snacbar_message.dart';
+import '../../global/base_model.dart'; 
 import '../sercuce_storage/secure_storage_manager.dart';
 
 class BaseService {
@@ -29,18 +26,17 @@ class BaseService {
       );
       return BaseModel<T>.fromJson(response.data, fromJsonT);
     } on DioException catch (e) {
-      // Handle DioException
-      if (e.response!.statusCode == 401) {
-        Snackbarmessage.instance.showSuccessSnackbar(
-          title: ' Session Expired',
-          message: 'Please ',
-        );
-
-        xxget.Get.offAllNamed(AppRoutes.SPLASHSCREEN);
-      }
-      return null;
+      return BaseModel<T>(
+        status: 'error',
+        message: handleDioError(e),
+        data: null,
+      );
     } catch (e) {
-      return null;
+      return BaseModel<T>(
+        status: 'error',
+        message: e.toString(),
+        data: null,
+      );
     }
   }
 

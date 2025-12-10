@@ -17,8 +17,7 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   var isSecureText = true.obs;
   var isValidationError = false.obs;
-  var isHasBackButton = false.obs;
-  var errorMessage = "".obs;
+  var isHasBackButton = false.obs; 
 
   final formKey = GlobalKey<FormState>();
 
@@ -55,7 +54,10 @@ class LoginController extends GetxController {
           AppRoutes.HOME,
         );
       } else {
-        errorMessage(response.message);
+        Snackbarmessage.instance.showErrorSnackbar(
+          title: 'Login Gagal',
+          message: response.message ?? 'Username / Password salah',
+        );
         isValidationError(true);
       }
     } else {
