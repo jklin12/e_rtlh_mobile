@@ -24,6 +24,7 @@ class LaporanFormController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
   var isLoading = false.obs;
+  var photoError = "".obs;
 
   final nomorUrutC = TextEditingController();
   final alamatC = TextEditingController();
@@ -53,7 +54,7 @@ class LaporanFormController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    loadKabupaten();
+    // loadKabupaten();
   }
 
   @override
@@ -117,18 +118,33 @@ class LaporanFormController extends GetxController {
 
     if (file != null) {
       selectedPhoto.value = File(file.path);
+      photoError.value = "";
     }
   }
 
+  bool validateForm() {
+    if (selectedPhoto.value == null) {
+      photoError.value = "Foto wajib diambil!";
+      return false;
+    }
+    return true;
+  }
+
   Future<void> submit() async {
+    if (!validateForm()) {
+      return; // hentikan jika tidak valid
+    }
+    
     var userToken = await secureStorage.getString(key: USER_TOKEN);
     isLoading(true);
 
     Map<String, dynamic> data = {
       "nomor_urut_rumah_tangga": nomorUrutC.text,
-      "kabupaten": selectedKabupaten.value!.name,
-      "kecamatan": selectedKecamatan.value!.name,
-      "desa": selectedDesa.value!.name,
+      "kabupaten":
+          selectedKabupaten.value != null ? selectedKabupaten.value!.name : '-',
+      "kecamatan":
+          selectedKecamatan.value != null ? selectedKecamatan.value!.name : '-',
+      "desa": selectedDesa.value != null ? selectedDesa.value!.name : '-',
       "alamat": alamatC.text,
       "nama_kepala_rumah_tangga": namaKrtc.text,
       "jenis_kelamin_krt": selectedGender,

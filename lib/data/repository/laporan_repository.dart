@@ -15,6 +15,12 @@ class LaporanRepository extends BaseService {
             .cast<LaporanModel>(),
         token);
   }
+  Future<BaseModel<LaporanModel>?> detailLaporan(String token,String laporanId) async {
+    return await getRequest<LaporanModel>(
+        '/api/laporan/$laporanId',
+        (dataJson) => LaporanModel.fromJson(dataJson as Map<String, dynamic>),
+        token);
+  }
 
   Future<BaseModel<LaporanSubmitModel>?> submitLaporan(
       String token, FormData postVal) async {

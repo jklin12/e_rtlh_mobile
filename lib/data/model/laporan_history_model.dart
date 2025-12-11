@@ -7,8 +7,8 @@ class LaporanHistoryModel {
   String keterangan;
   int createdBy;
   int? updatedBy;
-  String createdAt;
-  String updatedAt;
+  DateTime? createdAt;
+  DateTime? updatedAt;
   UserModel? creator;
 
   LaporanHistoryModel({
@@ -23,15 +23,20 @@ class LaporanHistoryModel {
     this.creator,
   });
 
-  factory LaporanHistoryModel.fromJson(Map<String, dynamic> json) => LaporanHistoryModel(
+  factory LaporanHistoryModel.fromJson(Map<String, dynamic> json) =>
+      LaporanHistoryModel(
         historyLaporanId: json["history_laporan_id"],
         laporanId: json["laporan_id"],
         status: json["status"],
         keterangan: json["keterangan"],
         createdBy: json["created_by"],
         updatedBy: json["updated_by"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
         creator: json["creator"] != null
             ? UserModel.fromJson(json["creator"])
             : null,
@@ -49,4 +54,3 @@ class LaporanHistoryModel {
         "creator": creator?.toJson(),
       };
 }
-

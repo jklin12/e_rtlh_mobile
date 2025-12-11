@@ -22,8 +22,8 @@ class FlavorConfig {
   static String get baseUrl {
     switch (appFlavor) {
       case Flavor.prod:
-        //return 'http://10.100.36.194/E-RTLH/public';
-        return 'http://192.168.1.2/e-rtlh/public';
+        return 'http://10.100.36.194/E-RTLH/public';
+        //return 'http://192.168.1.2/e-rtlh/public';
       case Flavor.dev:
         return 'http://10.100.36.194/e-rtlh/public';
       //return 'https://mobile.sanf.co.id/sanf_core_dev/public/api';

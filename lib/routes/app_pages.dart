@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import '../core/global/inital_binding.dart';
 import '../modules/home/home_binding.dart';
 import '../modules/home/home_view.dart';
+import '../modules/laporan/detail/laporan_detail_binding.dart';
+import '../modules/laporan/detail/laporan_detail_view.dart';
 import '../modules/laporan/form/laporan_form_view.dart';
 import '../modules/laporan/list/laporan_list_binding.dart';
 import '../modules/laporan/list/laporan_list_view.dart';
@@ -41,5 +43,9 @@ class AppPages {
         name: AppRoutes.LAPORAN_LIST,
         page: () => LaporanListView(),
         bindings: [InitialBinding(), LaporanListBinding()]),
+    GetPage(
+        name: AppRoutes.LAPORAN_DETAIL,
+        page: () => LaporanDetailView(),
+        bindings: [InitialBinding(), LaporanDetailBinding()]),
   ];
 }

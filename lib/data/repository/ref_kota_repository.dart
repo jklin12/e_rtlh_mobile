@@ -1,13 +1,23 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
-import 'package:e_rtlh_mobile/data/model/ref_kota/district_model.dart' show DistrictModel;
-import 'package:e_rtlh_mobile/data/model/ref_kota/village_model.dart' show VillageModel;
+import 'package:dio/io.dart';
+import 'package:e_rtlh_mobile/data/model/ref_kota/district_model.dart';
+import 'package:e_rtlh_mobile/data/model/ref_kota/village_model.dart';
 
 import '../model/ref_kota/regency_model.dart';
 
 class RefKotaRepository {
   final Dio dio;
 
-  RefKotaRepository(this.dio);
+  RefKotaRepository(this.dio) {
+    (dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
+        (HttpClient client) {
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+      return client;
+    };
+  }
 
   Future<List<RegencyModel>> getKabupaten() async {
     final response = await dio.get(
@@ -21,7 +31,7 @@ class RefKotaRepository {
 
   Future<List<DistrictModel>> getKecamatan(String regencyId) async {
     final response = await dio.get(
-      'https://emsifa.github.io/api-wilayah-indonesia/api/districts/$regencyId.json',
+      'https://www.emsifa.com/api-wilayah-indonesia/api/districts/$regencyId.json',
     );
 
     final List data = response.data;
@@ -31,7 +41,7 @@ class RefKotaRepository {
 
   Future<List<VillageModel>> getDesa(String districtId) async {
     final response = await dio.get(
-      'https://emsifa.github.io/api-wilayah-indonesia/api/villages/$districtId.json',
+      'https://www.emsifa.com/api-wilayah-indonesia/api/villages/$districtId.json',
     );
 
     final List data = response.data;

@@ -26,46 +26,55 @@ class LaporanFormView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              textForm("Nomor Rumah", laporanFormController.nomorUrutC),
-              selectKabupaten(),
-              selectKecamatan(),
-              selectDesa(),
-              textForm("Alamat", laporanFormController.alamatC),
-              textForm(
-                  "Nama Kepala Rumah Tangaa", laporanFormController.namaKrtc),
-              selectGeder(),
-              textForm("Umur ", laporanFormController.umurKrtc),
-              textForm("Jumlah Anggota Keluarga ",
-                  laporanFormController.jumlahAnggotaC),
-              textForm(
-                  "Jumlah Keluarga ", laporanFormController.jumlahKeluargaC),
-              takeImage(),
-              const SizedBox(height: 20),
-              Obx(() => laporanFormController.isLoading.value
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : PrimaryButton(
-                      btnColor: colorPrimary,
-                      textColor: Colors.white,
-                      textButton: "Masuk",
-                      onPressed: () {
-                        if (laporanFormController.formKey.currentState
-                                ?.validate() ??
-                            true) {
-                          laporanFormController.submit();
-                        }
-                      })),
-            ],
+          child: Form(
+            key: laporanFormController.formKey,
+            child: Column(
+              children: [
+                textForm("Nomor Rumah", laporanFormController.nomorUrutC,
+                    TextInputType.text),
+                selectKabupaten(),
+                selectKecamatan(),
+                selectDesa(),
+                textForm("Alamat", laporanFormController.alamatC,
+                    TextInputType.text),
+                textForm("Nama Kepala Rumah Tangaa",
+                    laporanFormController.namaKrtc, TextInputType.text),
+                selectGeder(),
+                textForm("Umur ", laporanFormController.umurKrtc,
+                    TextInputType.number),
+                textForm("Jumlah Anggota Keluarga ",
+                    laporanFormController.jumlahAnggotaC, TextInputType.number),
+                textForm(
+                    "Jumlah Keluarga ",
+                    laporanFormController.jumlahKeluargaC,
+                    TextInputType.number),
+                takeImage(),
+                const SizedBox(height: 20),
+                Obx(() => laporanFormController.isLoading.value
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : PrimaryButton(
+                        btnColor: colorPrimary,
+                        textColor: Colors.white,
+                        textButton: "Masuk",
+                        onPressed: () {
+                          if (laporanFormController.formKey.currentState
+                                  ?.validate() ??
+                              true) {
+                            laporanFormController.submit();
+                          }
+                        })),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget textForm(String label, TextEditingController textController) {
+  Widget textForm(String label, TextEditingController textController,
+      TextInputType inputType) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -79,7 +88,7 @@ class LaporanFormView extends StatelessWidget {
         TextFormField(
             controller: textController,
             style: textFormFieldStyle,
-            keyboardType: TextInputType.text,
+            keyboardType: inputType,
             decoration:
                 InputDecoration(hintText: label, hintStyle: hintTextStyle),
             textInputAction: TextInputAction.next,
@@ -161,6 +170,13 @@ class LaporanFormView extends StatelessWidget {
               );
             }).toList(),
             onChanged: laporanFormController.onSelectKabupaten,
+            validator: (value) {
+              if (value != null) {
+                return 'Kabupaten tidak boleh kosong';
+              } else {
+                return null;
+              }
+            },
           );
         }),
         SizedBox(
@@ -193,6 +209,13 @@ class LaporanFormView extends StatelessWidget {
                 child: Text(item.name),
               );
             }).toList(),
+            validator: (value) {
+              if (value != null) {
+                return 'Kecamatan tidak boleh kosong';
+              } else {
+                return null;
+              }
+            },
             onChanged: laporanFormController.kecamatanList.isEmpty
                 ? null
                 : laporanFormController.onSelectKecamatan,
@@ -228,6 +251,13 @@ class LaporanFormView extends StatelessWidget {
                 child: Text(item.name),
               );
             }).toList(),
+            validator: (value) {
+              if (value != null) {
+                return 'Desa tidak boleh kosong';
+              } else {
+                return null;
+              }
+            },
             onChanged: laporanFormController.desaList.isEmpty
                 ? null
                 : laporanFormController.onSelectDesa,
@@ -243,7 +273,9 @@ class LaporanFormView extends StatelessWidget {
   Widget takeImage() {
     return Column(
       children: [
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
         Obx(() {
           return GestureDetector(
             onTap: () => laporanFormController.pickPhoto(),
@@ -261,7 +293,8 @@ class LaporanFormView extends StatelessWidget {
                       children: const [
                         Icon(Icons.camera_alt, size: 40, color: Colors.grey),
                         SizedBox(height: 8),
-                        Text("Ambil Foto", style: TextStyle(color: Colors.grey)),
+                        Text("Ambil Foto",
+                            style: TextStyle(color: Colors.grey)),
                       ],
                     )
                   : ClipRRect(
@@ -276,6 +309,17 @@ class LaporanFormView extends StatelessWidget {
             ),
           );
         }),
+        Obx(() {
+          return laporanFormController.photoError.value.isNotEmpty
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 6, left: 4),
+                  child: Text(
+                    laporanFormController.photoError.value,
+                    style: const TextStyle(color: Colors.red, fontSize: 12),
+                  ),
+                )
+              : SizedBox.shrink();
+        })
       ],
     );
   }

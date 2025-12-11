@@ -40,18 +40,21 @@ TextStyle dropdownTextStyle = const TextStyle(
 TextStyle titleStyle = const TextStyle(
   color: colorJaguar,
   fontSize: 20.0,
+  fontFamily: 'Montserrat',
   fontWeight: FontWeight.bold,
 );
 
 TextStyle subTitleStyle = const TextStyle(
   color: colorJaguar,
   fontSize: 18.0,
+  fontFamily: 'Montserrat',
   fontWeight: FontWeight.bold,
 );
 
 TextStyle textFormFieldStyle = const TextStyle(
   fontSize: 14,
   color: Colors.black,
+  fontFamily: 'Montserrat',
   fontWeight: FontWeight.w300,
 );
 
@@ -81,12 +84,14 @@ BorderRadius borderRadius = const BorderRadius.all(
 TextStyle hintTextStyle = const TextStyle(
   fontSize: 14,
   color: colorGreyLight,
+  fontFamily: 'Montserrat',
   fontWeight: FontWeight.w400,
 );
 
 TextStyle valueTextStyle = const TextStyle(
   fontSize: 14,
   color: Colors.black,
+  fontFamily: 'Montserrat',
   fontWeight: FontWeight.w500,
 );
 
@@ -119,12 +124,14 @@ TextStyle textButtonStyle = const TextStyle(
 TextStyle titlePrimaryW700 = const TextStyle(
   color: colorPrimary,
   fontSize: 14.0,
+  fontFamily: 'Montserrat',
   fontWeight: FontWeight.w700,
 );
 
 TextStyle titlePrimaryW600 = const TextStyle(
   fontSize: 14,
   color: colorPrimary,
+  fontFamily: 'Montserrat',
   fontWeight: FontWeight.w600,
 );
 TextStyle contentTitleBigStyle = const TextStyle(
