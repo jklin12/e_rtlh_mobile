@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../core/config/falvor_config.dart';
 import '../../core/utils/assetes.dart';
 import '../../core/utils/styles.dart';
+import '../../routes/app_routes.dart';
 import 'home_controller.dart';
 import 'widget/banner_slider.dart';
 import 'widget/menu_grid.dart';
@@ -19,6 +20,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: colorSolitude,
       appBar: AppBar(
+        
         elevation: 0,
         backgroundColor: Colors.white,
         leading: Padding(
@@ -36,6 +38,17 @@ class HomeView extends StatelessWidget {
             },
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(AppRoutes.LAPORAN_FORM);
+        },
+        backgroundColor: colorPrimary,
+        child: Icon(
+          Icons.camera_alt,
+          size: 28,
+          color: Colors.white,
+        ),
       ),
       body: Obx(
         () => homeController.isLoading.value
@@ -56,7 +69,9 @@ class HomeView extends StatelessWidget {
                       padding: EdgeInsets.all(20.0),
                       child: Text("Menu", style: subTitleStyle),
                     ),
-                    MenuGrid(menus: homeController.home.value.menus,)
+                    MenuGrid(
+                      menus: homeController.home.value.menus,
+                    )
                   ],
                 ),
               ),

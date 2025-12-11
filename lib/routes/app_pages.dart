@@ -1,9 +1,13 @@
+import 'package:e_rtlh_mobile/modules/laporan/form/laporan_form_binding.dart';
 import 'package:e_rtlh_mobile/modules/splash_screen/splash_screen_view.dart';
 import 'package:get/get.dart';
 
 import '../core/global/inital_binding.dart';
 import '../modules/home/home_binding.dart';
 import '../modules/home/home_view.dart';
+import '../modules/laporan/form/laporan_form_view.dart';
+import '../modules/laporan/list/laporan_list_binding.dart';
+import '../modules/laporan/list/laporan_list_view.dart';
 import '../modules/login/login_binding.dart';
 import '../modules/login/login_view.dart';
 import '../modules/register/register_binding.dart';
@@ -29,17 +33,13 @@ class AppPages {
         name: AppRoutes.HOME,
         page: () => HomeView(),
         bindings: [InitialBinding(), HomeBinding()]),
-    /*GetPage(
-        name: AppRoutes.LOGIN,
-        page: () => Login(),
-        bindings: [InitialBinding(), LoginBinding()]),
     GetPage(
-        name: AppRoutes.DASHBOARD,
-        page: () => Dashboard(),
-        bindings: [InitialBinding(), DashboardBinding()]),
-     GetPage(
-        name: AppRoutes.HOME,
-        page: () => Home(),
-        bindings: [InitialBinding(), HomeBinding()]),*/
+        name: AppRoutes.LAPORAN_FORM,
+        page: () => LaporanFormView(),
+        bindings: [InitialBinding(), LaporanFormBinding()]),
+    GetPage(
+        name: AppRoutes.LAPORAN_LIST,
+        page: () => LaporanListView(),
+        bindings: [InitialBinding(), LaporanListBinding()]),
   ];
 }

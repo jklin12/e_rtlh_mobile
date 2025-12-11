@@ -43,6 +43,8 @@ class LoginController extends GetxController {
         secureStorage.saveBool(key: USER_LOGIN_STATUS, value: true);
         secureStorage.saveString(
             key: USER_TOKEN, value: response.data!.authToken);
+        secureStorage.saveString(
+            key: USER_LEVEL, value: response.data!.user.role ?? 'Masyarakat');
 
         isValidationError(false);
         Snackbarmessage.instance.showSuccessSnackbar(

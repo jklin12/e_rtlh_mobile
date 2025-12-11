@@ -12,6 +12,8 @@ class MenuGrid extends StatelessWidget {
 
   IconData _mapIcon(String name) {
     switch (name) {
+      case "list":
+        return Icons.history;
       case "manage":
         return Icons.settings;
       case "users":
