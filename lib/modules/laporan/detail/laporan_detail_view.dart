@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/styles.dart';
+import '../../../core/widget/primary_button.dart';
+import '../../../routes/app_routes.dart';
 import 'laporan_detail_controller.dart';
 import 'widget/detail_foto.dart';
 import 'widget/detail_header.dart';
@@ -46,6 +48,16 @@ class LaporanDetailView extends StatelessWidget {
                   width: double.infinity,
                   color: colorSolitude,
                 ),
+                laporanDetailController.role.value == 'admin' &&
+                        laporanDetailController.laporanDetail.value.status ==
+                            'menunggu_verifikasi'
+                    ? PrimaryButton(
+                        btnColor: colorSecondary,
+                        textColor: const Color.fromRGBO(255, 255, 255, 1),
+                        textButton: "Disposisi",
+                        onPressed: () => Get.toNamed(AppRoutes.LAPORAN_DISPOSI,
+                            arguments: laporanDetailController.laporanId))
+                    : SizedBox.shrink()
               ],
             )),
     );

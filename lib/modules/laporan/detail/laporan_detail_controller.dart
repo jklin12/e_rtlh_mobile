@@ -13,16 +13,20 @@ class LaporanDetailController extends GetxController {
   var isLoading = true.obs;
   final int laporanId = Get.arguments;
   var laporanDetail = LaporanModel().obs;
+  var role = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
+
     getDetail();
   }
 
   Future<void> getDetail() async {
     var userToken = await secureStorage.getString(key: USER_TOKEN);
-
+    var value = await secureStorage.getString(key: USER_TOKEN);
+    role.value = value ?? 'masyarakat';
+    
     var response =
         await laporanRepository.detailLaporan(userToken ?? '', "$laporanId");
     if (response!.status == 'success') {

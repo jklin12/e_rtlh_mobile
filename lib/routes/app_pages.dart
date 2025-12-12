@@ -7,6 +7,8 @@ import '../modules/home/home_binding.dart';
 import '../modules/home/home_view.dart';
 import '../modules/laporan/detail/laporan_detail_binding.dart';
 import '../modules/laporan/detail/laporan_detail_view.dart';
+import '../modules/laporan/disposisi/laporan_disposisi_binding.dart';
+import '../modules/laporan/disposisi/laporan_disposisi_view.dart';
 import '../modules/laporan/form/laporan_form_view.dart';
 import '../modules/laporan/list/laporan_list_binding.dart';
 import '../modules/laporan/list/laporan_list_view.dart';
@@ -47,5 +49,9 @@ class AppPages {
         name: AppRoutes.LAPORAN_DETAIL,
         page: () => LaporanDetailView(),
         bindings: [InitialBinding(), LaporanDetailBinding()]),
+    GetPage(
+        name: AppRoutes.LAPORAN_DISPOSI,
+        page: () => LaporanDisposisiView(),
+        bindings: [InitialBinding(), LaporanDisposisiBinding()]),
   ];
 }

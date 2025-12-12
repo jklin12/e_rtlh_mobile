@@ -31,4 +31,13 @@ class LaporanRepository extends BaseService {
             LaporanSubmitModel.fromJson(dataJson as Map<String, dynamic>),
         token);
   }
+  Future<BaseModel<LaporanSubmitModel>?> disposisiLaporan(
+      String token, String laporanId,FormData postVal) async {
+    return await postRequest<LaporanSubmitModel>(
+        '/api/laporan/$laporanId/disposisi',
+        postVal,
+        (dataJson) =>
+            LaporanSubmitModel.fromJson(dataJson as Map<String, dynamic>),
+        token);
+  }
 }

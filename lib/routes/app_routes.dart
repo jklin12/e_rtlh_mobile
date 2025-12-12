@@ -8,4 +8,5 @@ class AppRoutes {
   static const String LAPORAN_LIST = '/laporanList';
   static const String LAPORAN_FORM = '/laporanFrom';
   static const String LAPORAN_DETAIL = '/laporanDetail/:id';
+  static const String LAPORAN_DISPOSI = '/laporanDisposisi/:id';
 }
