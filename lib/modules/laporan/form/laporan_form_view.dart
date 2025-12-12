@@ -56,8 +56,8 @@ class LaporanFormView extends StatelessWidget {
                       )
                     : PrimaryButton(
                         btnColor: colorPrimary,
-                        textColor: Colors.white,
-                        textButton: "Masuk",
+                        textColor: const Color.fromRGBO(255, 255, 255, 1),
+                        textButton: "Lapor",
                         onPressed: () {
                           if (laporanFormController.formKey.currentState
                                   ?.validate() ??

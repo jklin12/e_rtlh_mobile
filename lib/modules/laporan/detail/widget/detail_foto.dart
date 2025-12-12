@@ -79,9 +79,9 @@ class DetailFoto extends StatelessWidget {
           color: colorSecondary,
         ),
         child: Icon(
-          Icons.timeline,
+          Icons.history,
           size: 22,
-          color: colorPrimary,
+          color: colorAccent3,
         ),
       ),
     );
