@@ -46,7 +46,7 @@ class DetailFoto extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () {
-                  Get.to(() => FotoPreviewPage(imageUrl: foto.path));
+                  Get.to(() => FotoPreviewPage(imageUrl: foto.path,keterangan: foto.keterangan,));
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),

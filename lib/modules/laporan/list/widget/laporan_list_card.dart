@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/utils/colors.dart';
 import '../../../../data/model/laporan_model.dart';
 
 class LaporanListCard extends StatelessWidget {
@@ -15,12 +16,16 @@ class LaporanListCard extends StatelessWidget {
 
   Color getStatusColor(String status) {
     switch (status) {
-      case "disetujui":
-        return Colors.green;
-      case "ditolak":
-        return Colors.red;
+      case "menunggu_verifikasi":
+        return colorWarning;
+      case "proses_survey":
+        return colorSecondary;
+      case "selesai_survey":
+        return colorPrimary;
+      case "diverifikasi_admin":
+        return colorSuccess;
       default:
-        return Colors.orange;
+        return Colors.black;
     }
   }
 
@@ -70,9 +75,9 @@ class LaporanListCard extends StatelessWidget {
                   ),
                 ],
               ),
-    
+
               const SizedBox(height: 10),
-    
+
               // CONTENT
               Text(
                 "No. Rumah Tangga: ${laporan.nomorUrutRumahTangga}",
@@ -88,7 +93,7 @@ class LaporanListCard extends StatelessWidget {
                 laporan.alamat!,
                 style: const TextStyle(fontSize: 13),
               ),
-    
+
               const SizedBox(height: 12),
               Text(
                 DateFormat("dd MMM yyyy").format(laporan.createdAt!),

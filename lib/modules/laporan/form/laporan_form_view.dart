@@ -93,7 +93,7 @@ class LaporanFormView extends StatelessWidget {
                 InputDecoration(hintText: label, hintStyle: hintTextStyle),
             textInputAction: TextInputAction.next,
             validator: (value) {
-              if (value != null && value.isEmpty) {
+              if (value == null || value.isEmpty){
                 return '$label tidak boleh kosong';
               } else {
                 return null;
@@ -171,7 +171,7 @@ class LaporanFormView extends StatelessWidget {
             }).toList(),
             onChanged: laporanFormController.onSelectKabupaten,
             validator: (value) {
-              if (value != null) {
+              if (value == null) {
                 return 'Kabupaten tidak boleh kosong';
               } else {
                 return null;
@@ -210,7 +210,7 @@ class LaporanFormView extends StatelessWidget {
               );
             }).toList(),
             validator: (value) {
-              if (value != null) {
+              if (value == null) {
                 return 'Kecamatan tidak boleh kosong';
               } else {
                 return null;
@@ -252,7 +252,7 @@ class LaporanFormView extends StatelessWidget {
               );
             }).toList(),
             validator: (value) {
-              if (value != null) {
+              if (value == null) {
                 return 'Desa tidak boleh kosong';
               } else {
                 return null;

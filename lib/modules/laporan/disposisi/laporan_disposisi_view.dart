@@ -24,34 +24,37 @@ class LaporanDisposisiView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Form(
           key: laporanDisposisiController.formKey,
-          child: Column(
-            children: [
-              selectStatus(),
-              Obx(() => laporanDisposisiController.selectedStatus.value ==
-                      'proses_survey'
-                  ? selectSurveyor()
-                  : SizedBox.shrink()),
-              textAreaForm(
-                  "Keterangan",
-                  laporanDisposisiController.keteranganController,
-                  TextInputType.text),
-              const SizedBox(height: 20),
-              Obx(() => laporanDisposisiController.isLoading.value
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : PrimaryButton(
-                      btnColor: colorPrimary,
-                      textColor: const Color.fromRGBO(255, 255, 255, 1),
-                      textButton: "Simpan",
-                      onPressed: () {
-                        if (laporanDisposisiController.formKey.currentState
-                                ?.validate() ??
-                            true) {
-                          laporanDisposisiController.submit();
-                        }
-                      })),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                selectStatus(),
+                Obx(() => laporanDisposisiController.selectedStatus.value ==
+                        'proses_survey'
+                    ? selectSurveyor()
+                    : SizedBox.shrink()),
+                textAreaForm(
+                    "Keterangan",
+                    laporanDisposisiController.keteranganController,
+                    TextInputType.text),
+                const SizedBox(height: 20),
+                Obx(() => laporanDisposisiController.isLoading.value
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : PrimaryButton(
+                        btnColor: colorSecondary,
+                        textColor: const Color.fromRGBO(255, 255, 255, 1),
+                        textButton: "Simpan",
+                        onPressed: () {
+                          if (laporanDisposisiController.formKey.currentState
+                                  ?.validate() ??
+                              true) {
+                            laporanDisposisiController.submit();
+                          }
+                        })),
+              ],
+            ),
           ),
         ),
       ),
@@ -125,7 +128,7 @@ class LaporanDisposisiView extends StatelessWidget {
               laporanDisposisiController.setStatus(value!);
             },
             validator: (value) {
-              if (value != null) {
+              if (value == null) {
                 return 'Status tidak boleh kosong';
               } else {
                 return null;
@@ -156,6 +159,7 @@ class LaporanDisposisiView extends StatelessWidget {
             style: textFormFieldStyle,
             decoration:
                 InputDecoration(hintText: "Surveyor", hintStyle: hintTextStyle),
+            value: laporanDisposisiController.selectedSurveyor.value,
             items: laporanDisposisiController.surveyors.map((item) {
               return DropdownMenuItem(
                 value: item,
@@ -164,7 +168,7 @@ class LaporanDisposisiView extends StatelessWidget {
             }).toList(),
             onChanged: laporanDisposisiController.onSelectSurveyor,
             validator: (value) {
-              if (value != null) {
+              if (laporanDisposisiController.selectedSurveyor.value == null) {
                 return 'Surveyor tidak boleh kosong';
               } else {
                 return null;

@@ -9,8 +9,6 @@ import '../../../core/widget/snacbar_message.dart';
 import '../../../data/repository/laporan_repository.dart';
 import 'package:dio/dio.dart' as dio;
 
-import '../../../routes/app_routes.dart';
-
 class LaporanDisposisiController extends GetxController {
   final secureStorage = Get.find<SecureStorageManager>();
   final laporanRepository = Get.find<LaporanRepository>();
@@ -60,35 +58,43 @@ class LaporanDisposisiController extends GetxController {
     var userToken = await secureStorage.getString(key: USER_TOKEN);
     isLoading(true);
 
-    Map<String, dynamic> data = {
-      "keterangan": keteranganController.text,
-      "status": selectedStatus,
-      "surveyor_id":
-          selectedSurveyor.value != null ? selectedSurveyor.value!.name : '-'
-    };
+    Map<String, dynamic> data = {};
+    if (selectedStatus.value == 'proses_survey') {
+      data = {
+        "keterangan": keteranganController.text,
+        "status": selectedStatus,
+        "surveyor_id": selectedSurveyor.value!.id
+      };
+    } else {
+      data = {
+        "keterangan": keteranganController.text,
+        "status": selectedStatus
+      };
+    }
 
     final formData = dio.FormData();
-
     // Add text field
     data.forEach((key, value) {
       formData.fields.add(MapEntry(key, value.toString()));
     });
 
-    var response = await laporanRepository.submitLaporan(userToken!, formData);
+    var response = await laporanRepository.disposisiLaporan(
+        userToken!, "$laporanId", formData);
 
     if (response!.status == 'success') {
+      Get.back(result: true);
       Snackbarmessage.instance.showSuccessSnackbar(
         title: 'Disposisi Berhasil',
         message:
             response.message ?? 'Laporan akan segera disurvey oleh surveyor',
       );
-
-      Get.offNamed(AppRoutes.LAPORAN_DETAIL, arguments: laporanId);
     } else {
       Snackbarmessage.instance.showErrorSnackbar(
         title: 'Error',
         message: response.message ?? 'Internal server error',
       );
     }
+
+    isLoading(false);
   }
 }

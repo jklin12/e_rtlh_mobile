@@ -53,7 +53,7 @@ class BaseService {
             HttpHeaders.acceptHeader: 'application/json',
           },
         ),
-      );
+      ); 
       return BaseModel<T>.fromJson(response.data, fromJsonT);
     } on DioException catch (e) {
       return BaseModel<T>(

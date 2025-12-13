@@ -13,16 +13,60 @@ class LaporanListController extends GetxController {
   var isLoading = true.obs;
   var laporanList = <LaporanModel>[].obs;
 
+  final selectedStatus = RxnString();
+
+  // date range
+  final startDate = Rxn<DateTime>();
+  final endDate = Rxn<DateTime>();
+
+  final statuses = [
+    'menunggu_verifikasi',
+    'proses_survey',
+    'selesai_survey',
+    'diverifikasi_admin',
+    'ditolak',
+  ];
+
+  void setStatus(String? value) {
+    selectedStatus.value = value;
+  }
+
+  void setDateRange(DateTime start, DateTime end) {
+    startDate.value = start;
+    endDate.value = end;
+  }
+
+  void reset() {
+    selectedStatus.value = null;
+    startDate.value = null;
+    endDate.value = null;
+    getList("", "", "");
+  }
+
+  void getFilteredList() {
+    getList(
+        selectedStatus.value ?? '',
+        startDate.value == null
+            ? ''
+            : startDate.value!.toIso8601String().split('T').first,
+        endDate.value == null
+            ? ''
+            : endDate.value!.toIso8601String().split('T').first);
+  }
+
   @override
   void onInit() {
     super.onInit();
-    getList();
+    getFilteredList();
   }
 
-  Future<void> getList() async {
+  Future<void> getList(String status, String startDate, String endDate) async {
+    isLoading(true);
+
     var userToken = await secureStorage.getString(key: USER_TOKEN);
 
-    var response = await laporanRepository.listLaporan(userToken ?? '');
+    var response = await laporanRepository.listLaporan(
+        userToken ?? '', status, startDate, endDate);
     if (response!.status == 'success') {
       laporanList.value = response.data!;
     } else {

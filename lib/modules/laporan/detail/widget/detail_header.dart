@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/formater.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../../core/widget/primary_button.dart';
 import '../../../../data/model/laporan_model.dart';
+import 'detail_survey.dart';
 
 class DetailHeader extends StatelessWidget {
   const DetailHeader({super.key, required this.laporanModel});
@@ -11,10 +15,14 @@ class DetailHeader extends StatelessWidget {
 
   Color getStatusColor(String status) {
     switch (status) {
-      case "disetujui":
-        return Colors.green;
-      case "ditolak":
-        return Colors.red;
+      case "menunggu_verifikasi":
+        return colorWarning;
+      case "proses_survey":
+        return colorSecondary;
+      case "selesai_survey":
+        return colorPrimary;
+      case "diverifikasi_admin":
+        return colorSuccess;
       default:
         return Colors.orange;
     }
@@ -98,6 +106,23 @@ class DetailHeader extends StatelessWidget {
           buildRowData("Nama", laporanModel.user!.name),
           buildRowData("Email", laporanModel.user!.email),
           buildRowData("Telepon", laporanModel.user!.phone),
+          SizedBox(
+            height: 8,
+          ),
+          laporanModel.status == 'selesai_survey' ||
+                  laporanModel.status == 'diverifikasi_admin'
+              ? PrimaryButton(
+                  btnColor: const Color.fromRGBO(255, 255, 255, 1),
+                  textColor: colorPrimary,
+                  textButton: "Detail Survey",
+                  borderSide: BorderSide(color: colorPrimary),
+                  onPressed: () {
+                    Get.to(() => DetailSurvey(
+                          laporanDetailModel: laporanModel.detail!,
+                        ));
+                  },
+                )
+              : SizedBox.shrink(),
           SizedBox(
             height: 12,
           ),

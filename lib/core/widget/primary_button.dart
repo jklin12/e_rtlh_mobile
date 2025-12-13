@@ -30,6 +30,7 @@ class PrimaryButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           side: borderSide,
           borderRadius: BorderRadius.circular(12.0),
+           
         ),
         elevation: 0.0,
         highlightElevation: 0.0,

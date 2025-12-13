@@ -1,28 +1,26 @@
 class LaporanDetailModel {
-  int laporanDetailId;
-  int laporanId;
   String? kecamatan;
-  String statusKesejahteraan;
-  String pendidikanTertinggi;
-  String lapanganUsaha;
-  String statusKedudukanPekerjaan;
-  int menggunakanTabung55;
-  String statusTabungGas;
-  String statusBangunan;
-  String jenisLantaiTerluas;
-  String jenisDindingTerluas;
-  String jenisAtapTerluas;
-  int milikSendiri;
-  int lantaiTidakLayak;
-  int dindingTidakLayak;
-  int atapTidakLayak;
-  String kondisiRtlh;
-  String prioritasRtlh;
-  String sumberAirMinum;
-  String sumberPenerangan;
-  String dayaListrik;
-  String bahanBakarMemasak;
-  String penggunaanFasilitasBab;
+  String? statusKesejahteraan;
+  String? pendidikanTertinggi;
+  String? lapanganUsaha;
+  String? statusKedudukanPekerjaan;
+  String? menggunakanTabung55;
+  String? statusTabungGas;
+  String? statusBangunan;
+  String? jenisLantaiTerluas;
+  String? jenisDindingTerluas;
+  String? jenisAtapTerluas;
+  String? milikSendiri;
+  String? lantaiTidakLayak;
+  String? dindingTidakLayak;
+  String? atapTidakLayak;
+  String? kondisiRtlh;
+  String? prioritasRtlh;
+  String? sumberAirMinum;
+  String? sumberPenerangan;
+  String? dayaListrik;
+  String? bahanBakarMemasak;
+  String? penggunaanFasilitasBab;
   String? jenisKloset;
   String? tempatPembuanganTinja;
   String? nomorUrutArtWus;
@@ -37,30 +35,28 @@ class LaporanDetailModel {
   String updatedAt;
 
   LaporanDetailModel({
-    required this.laporanDetailId,
-    required this.laporanId,
-    required this.kecamatan,
-    required this.statusKesejahteraan,
-    required this.pendidikanTertinggi,
-    required this.lapanganUsaha,
-    required this.statusKedudukanPekerjaan,
-    required this.menggunakanTabung55,
-    required this.statusTabungGas,
-    required this.statusBangunan,
-    required this.jenisLantaiTerluas,
-    required this.jenisDindingTerluas,
-    required this.jenisAtapTerluas,
-    required this.milikSendiri,
-    required this.lantaiTidakLayak,
-    required this.dindingTidakLayak,
-    required this.atapTidakLayak,
-    required this.kondisiRtlh,
-    required this.prioritasRtlh,
-    required this.sumberAirMinum,
-    required this.sumberPenerangan,
-    required this.dayaListrik,
-    required this.bahanBakarMemasak,
-    required this.penggunaanFasilitasBab,
+    this.kecamatan,
+    this.statusKesejahteraan,
+    this.pendidikanTertinggi,
+    this.lapanganUsaha,
+    this.statusKedudukanPekerjaan,
+    this.menggunakanTabung55,
+    this.statusTabungGas,
+    this.statusBangunan,
+    this.jenisLantaiTerluas,
+    this.jenisDindingTerluas,
+    this.jenisAtapTerluas,
+    this.milikSendiri,
+    this.lantaiTidakLayak,
+    this.dindingTidakLayak,
+    this.atapTidakLayak,
+    this.kondisiRtlh,
+    this.prioritasRtlh,
+    this.sumberAirMinum,
+    this.sumberPenerangan,
+    this.dayaListrik,
+    this.bahanBakarMemasak,
+    this.penggunaanFasilitasBab,
     this.jenisKloset,
     this.tempatPembuanganTinja,
     this.nomorUrutArtWus,
@@ -75,9 +71,8 @@ class LaporanDetailModel {
     required this.updatedAt,
   });
 
-  factory LaporanDetailModel.fromJson(Map<String, dynamic> json) => LaporanDetailModel(
-        laporanDetailId: json["laporan_detail_id"],
-        laporanId: json["laporan_id"],
+  factory LaporanDetailModel.fromJson(Map<String, dynamic> json) =>
+      LaporanDetailModel(
         kecamatan: json["kecamatan"],
         statusKesejahteraan: json["status_kesejahteraan"],
         pendidikanTertinggi: json["pendidikan_tertinggi"],
@@ -115,8 +110,6 @@ class LaporanDetailModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "laporan_detail_id": laporanDetailId,
-        "laporan_id": laporanId,
         "kecamatan": kecamatan,
         "status_kesejahteraan": statusKesejahteraan,
         "pendidikan_tertinggi": pendidikanTertinggi,

@@ -12,6 +12,8 @@ import '../modules/laporan/disposisi/laporan_disposisi_view.dart';
 import '../modules/laporan/form/laporan_form_view.dart';
 import '../modules/laporan/list/laporan_list_binding.dart';
 import '../modules/laporan/list/laporan_list_view.dart';
+import '../modules/laporan/sruvey/survey_binding.dart';
+import '../modules/laporan/sruvey/survey_view.dart';
 import '../modules/login/login_binding.dart';
 import '../modules/login/login_view.dart';
 import '../modules/register/register_binding.dart';
@@ -53,5 +55,9 @@ class AppPages {
         name: AppRoutes.LAPORAN_DISPOSI,
         page: () => LaporanDisposisiView(),
         bindings: [InitialBinding(), LaporanDisposisiBinding()]),
+    GetPage(
+        name: AppRoutes.LAPORAN_SURVEY,
+        page: () => SurveyView(),
+        bindings: [InitialBinding(), SurveyBinding()]),
   ];
 }
