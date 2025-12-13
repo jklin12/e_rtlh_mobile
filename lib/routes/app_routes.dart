@@ -4,6 +4,7 @@ class AppRoutes {
   static const String DASHBOARD = '/dashboard';
   static const String SPLASHSCREEN = '/splashscreen';
   static const String HOME = '/home';
+  static const String PROFILE = '/profile';
 
   static const String LAPORAN_LIST = '/laporanList';
   static const String LAPORAN_FORM = '/laporanFrom';

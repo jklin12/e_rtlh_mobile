@@ -30,14 +30,14 @@ class HomeView extends StatelessWidget {
           ),
         ),
         title: Text("E-RTLH Jambi", style: titleStyle),
-        actions: [
+        /*actions: [
           IconButton(
             icon: Icon(Icons.account_circle, color: colorPrimary, size: 30),
             onPressed: () {
-              // Navigasi ke halaman profile di sini
+              Get.toNamed(AppRoutes.PROFILE);
             },
           ),
-        ],
+        ],*/
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

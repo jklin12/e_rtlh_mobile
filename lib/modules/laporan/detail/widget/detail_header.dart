@@ -103,9 +103,9 @@ class DetailHeader extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          buildRowData("Nama", laporanModel.user!.name),
-          buildRowData("Email", laporanModel.user!.email),
-          buildRowData("Telepon", laporanModel.user!.phone),
+          buildRowData("Nama", laporanModel.user!.name ?? ''),
+          buildRowData("Email", laporanModel.user!.email ?? ''),
+          buildRowData("Telepon", laporanModel.user!.phone ?? ''),
           SizedBox(
             height: 8,
           ),

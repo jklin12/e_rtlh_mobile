@@ -16,6 +16,8 @@ import '../modules/laporan/sruvey/survey_binding.dart';
 import '../modules/laporan/sruvey/survey_view.dart';
 import '../modules/login/login_binding.dart';
 import '../modules/login/login_view.dart';
+import '../modules/profile/profile_binding.dart';
+import '../modules/profile/profile_view.dart';
 import '../modules/register/register_binding.dart';
 import '../modules/register/register_view.dart';
 import '../modules/splash_screen/splash_screen_binding.dart';
@@ -39,6 +41,10 @@ class AppPages {
         name: AppRoutes.HOME,
         page: () => HomeView(),
         bindings: [InitialBinding(), HomeBinding()]),
+    GetPage(
+        name: AppRoutes.PROFILE,
+        page: () => ProfileView(),
+        bindings: [InitialBinding(), ProfileBinding()]),
     GetPage(
         name: AppRoutes.LAPORAN_FORM,
         page: () => LaporanFormView(),

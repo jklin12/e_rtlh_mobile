@@ -13,6 +13,13 @@ class UserRepository extends BaseService {
         token);
   }
 
+  Future<BaseModel<UserModel>?> profile(String token) async {
+    return await getRequest<UserModel>(
+        '/api/user/profile',
+        (dataJson) => UserModel.fromJson(dataJson as Map<String, dynamic>),
+        token);
+  }
+
   Future<BaseModel<List<UserModel>>?> listSurveyor(String token) async {
     return await getRequest<List<UserModel>>(
         '/api/user/surveyor',
@@ -21,5 +28,12 @@ class UserRepository extends BaseService {
             .toList()
             .cast<UserModel>(),
         token);
+  }
+
+  Future<BaseModel<Map<String, dynamic>>?> logout(
+    String token, 
+  ) async {
+    return await postRequest<Map<String, dynamic>>('/api/logout', {},
+        (dataJson) => dataJson as Map<String, dynamic>, token);
   }
 }

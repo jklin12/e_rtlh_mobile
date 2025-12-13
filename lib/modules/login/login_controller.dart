@@ -20,13 +20,7 @@ class LoginController extends GetxController {
   var isHasBackButton = false.obs; 
 
   final formKey = GlobalKey<FormState>();
-
-  @override
-  void onInit() {
-    super.onInit();
-    var arguments = Get.arguments;
-    isHasBackButton(arguments['is_has_back_button']);
-  }
+ 
 
   tooglePassword() {
     isSecureText(!isSecureText.value);

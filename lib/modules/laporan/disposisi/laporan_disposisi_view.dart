@@ -163,7 +163,7 @@ class LaporanDisposisiView extends StatelessWidget {
             items: laporanDisposisiController.surveyors.map((item) {
               return DropdownMenuItem(
                 value: item,
-                child: Text(item.name),
+                child: Text(item.name ?? ''),
               );
             }).toList(),
             onChanged: laporanDisposisiController.onSelectSurveyor,

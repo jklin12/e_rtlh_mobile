@@ -9,32 +9,26 @@ UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
-  int id;
-  String name;
-  String email;
-  String phone;
+  int? id;
+  String? name;
+  String? email;
+  String? phone;
   String? role;
-  DateTime createdAt;
-  DateTime updatedAt;
 
   UserModel({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.phone,
-    required this.role,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.name,
+    this.email,
+    this.phone,
+    this.role,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        id: json["id"],
-        name: json["name"],
-        email: json["email"],
-        phone: json["phone"],
+        id: json["id"] ?? 0,
+        name: json["name"] ?? '',
+        email: json["email"] ?? '',
+        phone: json["phone"] ?? '',
         role: json["role"] ?? 'masyarakat',
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -43,7 +37,5 @@ class UserModel {
         "email": email,
         "phone": phone,
         "role": role,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
       };
 }
