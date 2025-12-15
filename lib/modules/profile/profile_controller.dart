@@ -21,9 +21,10 @@ class ProfileController extends GetxController {
   }
 
   Future<void> getHome() async {
+    isLoading(true);
     var userToken = await secureStorage.getString(key: USER_TOKEN);
 
-    var response = await userRepository.profile(userToken ?? '');
+    var response = await userRepository.profile(userToken ?? ''); 
     if (response!.status == 'success') {
       user.value = response.data!;
     } else {

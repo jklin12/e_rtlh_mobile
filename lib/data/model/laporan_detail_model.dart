@@ -1,5 +1,4 @@
 class LaporanDetailModel {
-  String? kecamatan;
   String? statusKesejahteraan;
   String? pendidikanTertinggi;
   String? lapanganUsaha;
@@ -29,13 +28,9 @@ class LaporanDetailModel {
   String? pesertaKbWus;
   String? metodeKontrasepsiWus;
   String? lamaKontrasepsiWus;
-  int createdBy;
-  int? updatedBy;
-  String createdAt;
-  String updatedAt;
+  DateTime? createdAt;
 
   LaporanDetailModel({
-    this.kecamatan,
     this.statusKesejahteraan,
     this.pendidikanTertinggi,
     this.lapanganUsaha,
@@ -65,15 +60,11 @@ class LaporanDetailModel {
     this.pesertaKbWus,
     this.metodeKontrasepsiWus,
     this.lamaKontrasepsiWus,
-    required this.createdBy,
-    this.updatedBy,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
   });
 
   factory LaporanDetailModel.fromJson(Map<String, dynamic> json) =>
       LaporanDetailModel(
-        kecamatan: json["kecamatan"],
         statusKesejahteraan: json["status_kesejahteraan"],
         pendidikanTertinggi: json["pendidikan_tertinggi"],
         lapanganUsaha: json["lapangan_usaha"],
@@ -103,14 +94,12 @@ class LaporanDetailModel {
         pesertaKbWus: json["peserta_kb_wus"],
         metodeKontrasepsiWus: json["metode_kontrasepsi_wus"],
         lamaKontrasepsiWus: json["lama_kontrasepsi_wus"],
-        createdBy: json["created_by"],
-        updatedBy: json["updated_by"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "kecamatan": kecamatan,
         "status_kesejahteraan": statusKesejahteraan,
         "pendidikan_tertinggi": pendidikanTertinggi,
         "lapangan_usaha": lapanganUsaha,
@@ -140,9 +129,5 @@ class LaporanDetailModel {
         "peserta_kb_wus": pesertaKbWus,
         "metode_kontrasepsi_wus": metodeKontrasepsiWus,
         "lama_kontrasepsi_wus": lamaKontrasepsiWus,
-        "created_by": createdBy,
-        "updated_by": updatedBy,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
       };
 }

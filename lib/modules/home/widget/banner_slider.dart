@@ -2,10 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_rtlh_mobile/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/model/banner_model.dart';
+import '../../../data/model/berita_model.dart';
 
 class BannerSlider extends StatelessWidget {
-  final List<BannerModel> banners;
+  final List<BeritaModel> banners;
   final String baseUrl;
 
   const BannerSlider({

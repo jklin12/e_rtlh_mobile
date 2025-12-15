@@ -18,9 +18,40 @@ class SurveyController extends GetxController {
   var isLoading = false.obs;
 
   final int laporanId = Get.arguments;
-
+  
   final statusKesejahteraanC = TextEditingController();
   final pendidikanC = TextEditingController();
+  final lapanganUsahaC = TextEditingController();
+  final statusPekerjaanC = TextEditingController();
+  final statusBangunanC = TextEditingController();
+  final kondisiRtlhC = TextEditingController();
+  final prioritasRtlhC = TextEditingController();
+  final sumberAirC = TextEditingController();
+  final sumberPeneranganC = TextEditingController();
+  final dayaListrikC = TextEditingController();
+  final bahanBakarC = TextEditingController();
+  final fasilitasBabC = TextEditingController();
+  final jenisKlosetC = TextEditingController();
+  final tempatTinjaC = TextEditingController();
+  final nomorArtWusC = TextEditingController();
+  final usiaSuamiC = TextEditingController();
+  final usiaIstriC = TextEditingController();
+  final lamaKontrasepsiC = TextEditingController();
+
+  // ===== BOOLEAN / DROPDOWN (PAKAI Rx) =====
+  final menggunakanTabung55 = '1'.obs;
+  final statusTabungGas = 'Subsidi'.obs;
+  final jenisLantai = 'tanah'.obs;
+  final jenisDinding = 'triplek'.obs;
+  final jenisAtap = 'seng'.obs;
+
+  final milikSendiri = '1'.obs;
+  final lantaiTidakLayak = '1'.obs;
+  final dindingTidakLayak = '0'.obs;
+  final atapTidakLayak = '1'.obs;
+
+  final pesertaKb = 'ya'.obs;
+  final metodeKontrasepsi = 'suntik'.obs;
 
   final picker = ImagePicker();
   Rx<File?> selectedPhoto1 = Rx<File?>(null);
@@ -46,8 +77,35 @@ class SurveyController extends GetxController {
     isLoading(true);
 
     Map<String, dynamic> data = {
-      "status_kesejahteraan": pendidikanC.text,
-      "pendidikan_tertinggi": pendidikanC.text
+      "status_kesejahteraan": statusKesejahteraanC.text,
+      "pendidikan_tertinggi": pendidikanC.text,
+      "lapangan_usaha": lapanganUsahaC.text,
+      "status_kedudukan_pekerjaan": statusPekerjaanC.text,
+      "menggunakan_tabung_55": menggunakanTabung55.value,
+      "status_tabung_gas": statusTabungGas.value,
+      "status_bangunan": statusBangunanC.text,
+      "jenis_lantai_terluas": jenisLantai.value,
+      "jenis_dinding_terluas": jenisDinding.value,
+      "jenis_atap_terluas": jenisAtap.value,
+      "milik_sendiri": milikSendiri.value,
+      "lantai_tidak_layak": lantaiTidakLayak.value,
+      "dinding_tidak_layak": dindingTidakLayak.value,
+      "atap_tidak_layak": atapTidakLayak.value,
+      "kondisi_rtlh": kondisiRtlhC.text,
+      "prioritas_rtlh": prioritasRtlhC.text,
+      "sumber_air_minum": sumberAirC.text,
+      "sumber_penerangan": sumberPeneranganC.text,
+      "daya_listrik": dayaListrikC.text,
+      "bahan_bakar_memasak": bahanBakarC.text,
+      "penggunaan_fasilitas_bab": fasilitasBabC.text,
+      "jenis_kloset": jenisKlosetC.text,
+      "tempat_pembuangan_tinja": tempatTinjaC.text,
+      "nomor_urut_art_wus": nomorArtWusC.text,
+      "usia_kawin_suami_wus": usiaSuamiC.text,
+      "usia_kawin_istri_wus": usiaIstriC.text,
+      "lama_kontrasepsi_wus": lamaKontrasepsiC.text,
+      "peserta_kb_wus": pesertaKb.value,
+      "metode_kontrasepsi_wus": metodeKontrasepsi.value,
     };
 
     final formData = dio.FormData();
@@ -75,14 +133,16 @@ class SurveyController extends GetxController {
     formData.files.add(MapEntry("photos[1][file]", multipart2));
     formData.fields.add(MapEntry("photos[1][file]", "Foto Samping Rumah"));
 
-    var response = await laporanRepository.surveyLaporan(userToken!, "$laporanId",formData);
+    var response = await laporanRepository.surveyLaporan(
+        userToken!, "$laporanId", formData);
 
     if (response!.status == 'success') {
+      Get.back(result: true);
+
       Snackbarmessage.instance.showSuccessSnackbar(
         title: 'Survey Berhasil',
         message: response.message ?? 'Survey sudah diselesaikan',
       );
-      Get.back(result: true);
     } else {
       Snackbarmessage.instance.showErrorSnackbar(
         title: 'Error',
@@ -90,7 +150,6 @@ class SurveyController extends GetxController {
       );
     }
     isLoading(false);
-
   }
 
   Future<void> pickPhoto(Rx<File?> path) async {

@@ -29,14 +29,143 @@ class SurveyView extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                textForm('Status Kesejahteraan', surveyController.statusKesejahteraanC,
-                    TextInputType.text),
+                textForm('Status Kesejahteraan',
+                    surveyController.statusKesejahteraanC, TextInputType.text),
                 textForm('Pendidikan Tertinggi', surveyController.pendidikanC,
                     TextInputType.text),
+                textForm(
+                  'Lapangan Usaha',
+                  surveyController.lapanganUsahaC,
+                  TextInputType.text,
+                ),
+
+                textForm(
+                  'Status Kedudukan Pekerjaan',
+                  surveyController.statusPekerjaanC,
+                  TextInputType.text,
+                ),
+
+                const SizedBox(height: 16),
+
+                // ===== FASILITAS RUMAH =====
+                //sectionTitle('Kondisi Rumah'),
+
+                dropdownField(
+                  label: 'Menggunakan Tabung 5.5 Kg',
+                  value: surveyController.menggunakanTabung55,
+                  items: const [
+                    DropdownMenuItem(value: '1', child: Text('Ya')),
+                    DropdownMenuItem(value: '0', child: Text('Tidak')),
+                  ],
+                ),
+
+                dropdownField(
+                  label: 'Status Tabung Gas',
+                  value: surveyController.statusTabungGas,
+                  items: const [
+                    DropdownMenuItem(value: 'Subsidi', child: Text('Subsidi')),
+                    DropdownMenuItem(
+                        value: 'Non Subsidi', child: Text('Non Subsidi')),
+                  ],
+                ),
+
+                textForm(
+                  'Status Bangunan',
+                  surveyController.statusBangunanC,
+                  TextInputType.text,
+                ),
+
+                dropdownField(
+                  label: 'Jenis Lantai Terluas',
+                  value: surveyController.jenisLantai,
+                  items: const [
+                    DropdownMenuItem(value: 'tanah', child: Text('Tanah')),
+                    DropdownMenuItem(value: 'keramik', child: Text('Keramik')),
+                    DropdownMenuItem(value: 'semen', child: Text('Semen')),
+                  ],
+                ),
+
+                dropdownField(
+                  label: 'Jenis Dinding Terluas',
+                  value: surveyController.jenisDinding,
+                  items: const [
+                    DropdownMenuItem(value: 'triplek', child: Text('Triplek')),
+                    DropdownMenuItem(value: 'tembok', child: Text('Tembok')),
+                  ],
+                ),
+
+                dropdownField(
+                  label: 'Jenis Atap Terluas',
+                  value: surveyController.jenisAtap,
+                  items: const [
+                    DropdownMenuItem(value: 'seng', child: Text('Seng')),
+                    DropdownMenuItem(value: 'genteng', child: Text('Genteng')),
+                  ],
+                ),
+
+                const SizedBox(height: 16),
+
+                // ===== RTLH =====
+                //sectionTitle('Kondisi RTLH'),
+
+                textForm(
+                  'Kondisi RTLH',
+                  surveyController.kondisiRtlhC,
+                  TextInputType.text,
+                ),
+
+                textForm(
+                  'Prioritas RTLH',
+                  surveyController.prioritasRtlhC,
+                  TextInputType.text,
+                ),
+
+                const SizedBox(height: 16),
+
+                // ===== KELUARGA BERENCANA =====
+                //sectionTitle('Keluarga Berencana'),
+
+                textForm(
+                  'Nomor Urut ART WUS',
+                  surveyController.nomorArtWusC,
+                  TextInputType.number,
+                ),
+
+                textForm(
+                  'Usia Kawin Suami',
+                  surveyController.usiaSuamiC,
+                  TextInputType.number,
+                ),
+
+                textForm(
+                  'Usia Kawin Istri',
+                  surveyController.usiaIstriC,
+                  TextInputType.number,
+                ),
+
+                dropdownField(
+                  label: 'Peserta KB',
+                  value: surveyController.pesertaKb,
+                  items: const [
+                    DropdownMenuItem(value: 'ya', child: Text('Ya')),
+                    DropdownMenuItem(value: 'tidak', child: Text('Tidak')),
+                  ],
+                ),
+
+                dropdownField(
+                  label: 'Metode Kontrasepsi',
+                  value: surveyController.metodeKontrasepsi,
+                  items: const [
+                    DropdownMenuItem(value: 'suntik', child: Text('Suntik')),
+                    DropdownMenuItem(value: 'pil', child: Text('Pil')),
+                    DropdownMenuItem(value: 'implant', child: Text('Implant')),
+                  ],
+                ),
                 takeImage("Foto Depan Rumah", surveyController.selectedPhoto1,
                     surveyController.photo1Error),
                 takeImage("Foto Samping Rumah", surveyController.selectedPhoto2,
                     surveyController.photo2Error),
+
                 Obx(() => surveyController.isLoading.value
                     ? Center(
                         child: CircularProgressIndicator(),
@@ -58,6 +187,12 @@ class SurveyView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget sectionTitle(String title) {
+    return Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: Text(title, style: labelTitleStyle));
   }
 
   Widget textForm(String label, TextEditingController textController,
@@ -90,6 +225,36 @@ class SurveyView extends StatelessWidget {
           height: 8,
         )
       ],
+    );
+  }
+
+  Widget dropdownField({
+    required String label,
+    required RxString value,
+    required List<DropdownMenuItem<String>> items,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Obx(() => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: valueTextStyle,
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              DropdownButtonFormField<String>(
+                value: value.value,
+                items: items,
+                 
+                onChanged: (val) {
+                  if (val != null) value.value = val;
+                },
+              ),
+            ],
+          )),
     );
   }
 

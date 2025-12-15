@@ -30,7 +30,11 @@ class ProfileView extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            _profileHeader(),
+            Obx(() => profileController.isLoading.value
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : _profileHeader()),
             const SizedBox(height: 20),
             _menuSection(),
           ],
@@ -91,7 +95,7 @@ class ProfileView extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
-            profileController.user.value.email ?? '',
+            (profileController.user.value.role ?? '').toUpperCase(),
             style: TextStyle(color: colorPrimary),
           ),
         ),

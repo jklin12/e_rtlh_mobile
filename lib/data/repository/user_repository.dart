@@ -1,6 +1,7 @@
 import 'package:e_rtlh_mobile/core/services/api_client/base_service.dart';
 
 import '../../core/global/base_model.dart';
+import '../model/berita_model.dart';
 import '../model/home_model.dart';
 import '../model/user_model.dart';
 
@@ -27,6 +28,16 @@ class UserRepository extends BaseService {
             .map((e) => UserModel.fromJson(e))
             .toList()
             .cast<UserModel>(),
+        token);
+  }
+  
+  Future<BaseModel<List<BeritaModel>>?> getBerita(String token) async {
+    return await getRequest<List<BeritaModel>>(
+        '/api/user/berita',
+        (dataJson) => (dataJson as List)
+            .map((e) => BeritaModel.fromJson(e))
+            .toList()
+            .cast<BeritaModel>(),
         token);
   }
 

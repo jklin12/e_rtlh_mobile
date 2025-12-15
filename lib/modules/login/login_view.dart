@@ -26,7 +26,7 @@ class LoginView extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(LOGIN_BG),
+                  image: AssetImage(LOGIN_BG),
                   fit: BoxFit.cover,
                   opacity: 0.6,
                 ),
@@ -40,12 +40,14 @@ class LoginView extends StatelessWidget {
                       width: 100,
                     ),
                     const SizedBox(height: 10),
-                    const Text(
+                    Text(
                       "Selamat Datang!",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
+                      style: titleStyle.copyWith(color: colorWhiteF3),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      "E-RTLH Mobile ",
+                      style: labelTitleStyle.copyWith(color: colorWhiteF3),
                     ),
                   ],
                 ),

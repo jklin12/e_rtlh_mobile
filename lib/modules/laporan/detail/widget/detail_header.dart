@@ -119,6 +119,7 @@ class DetailHeader extends StatelessWidget {
                   onPressed: () {
                     Get.to(() => DetailSurvey(
                           laporanDetailModel: laporanModel.detail!,
+                          surveyor: laporanModel.surveyor,
                         ));
                   },
                 )

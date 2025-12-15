@@ -3,6 +3,9 @@ import 'package:e_rtlh_mobile/modules/splash_screen/splash_screen_view.dart';
 import 'package:get/get.dart';
 
 import '../core/global/inital_binding.dart';
+import '../modules/berita/list/berita_list_binding.dart';
+import '../modules/berita/list/berita_list_view.dart';
+import '../modules/cooming_soo.dart';
 import '../modules/home/home_binding.dart';
 import '../modules/home/home_view.dart';
 import '../modules/laporan/detail/laporan_detail_binding.dart';
@@ -65,5 +68,13 @@ class AppPages {
         name: AppRoutes.LAPORAN_SURVEY,
         page: () => SurveyView(),
         bindings: [InitialBinding(), SurveyBinding()]),
+    GetPage(
+        name: AppRoutes.BERITA_LIST,
+        page: () => BeritaListView(),
+        bindings: [InitialBinding(),BeritaListBinding()]),
+    GetPage(
+        name: AppRoutes.COOMING_SOON,
+        page: () => CoomingSoon(),
+        bindings: [InitialBinding()]),
   ];
 }

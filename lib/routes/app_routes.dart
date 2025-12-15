@@ -11,4 +11,9 @@ class AppRoutes {
   static const String LAPORAN_DETAIL = '/laporanDetail/:id';
   static const String LAPORAN_DISPOSI = '/laporanDisposisi/:id';
   static const String LAPORAN_SURVEY = '/laporanSurvey/:id';
+
+  static const String BERITA_LIST = '/beritaList';
+  static const String BERITA_DETAIL = '/beritaDetail/:id';
+
+  static const String COOMING_SOON = '/commingSoon';
 }
