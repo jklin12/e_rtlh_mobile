@@ -128,7 +128,7 @@ class ProfileView extends StatelessWidget {
           _divider(),
           _menuItem(
             icon: Icons.info,
-            title: "Tentang E-RTLH Jambi",
+            title: "Tentang E-Damaja Jambi",
             color: colorPrimary,
             onTap: () {},
           ),

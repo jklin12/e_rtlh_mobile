@@ -32,9 +32,9 @@ class LaporanFormView extends StatelessWidget {
               children: [
                 textForm("Nomor Rumah", laporanFormController.nomorUrutC,
                     TextInputType.text),
-                /*selectKabupaten(),
+                selectKabupaten(),
                 selectKecamatan(),
-                selectDesa(),*/
+                selectDesa(),
                 textForm("Alamat", laporanFormController.alamatC,
                     TextInputType.text),
                 textForm("Nama Kepala Rumah Tangaa",

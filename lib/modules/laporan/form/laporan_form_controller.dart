@@ -1,10 +1,9 @@
 import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../core/services/location_service.dart';
 import '../../../core/services/sercuce_storage/secure_storage_manager.dart';
 import '../../../core/utils/preference_constant.dart';
 import '../../../core/widget/snacbar_message.dart';
@@ -14,13 +13,13 @@ import '../../../data/model/ref_kota/village_model.dart';
 import '../../../data/repository/laporan_repository.dart';
 import 'package:dio/dio.dart' as dio;
 
-import '../../../data/repository/ref_kota_repository.dart';
+import '../../../data/repository/master_lokasi_repository.dart';
 import '../../../routes/app_routes.dart';
 
 class LaporanFormController extends GetxController {
   final secureStorage = Get.find<SecureStorageManager>();
   final laporanRepository = Get.find<LaporanRepository>();
-  final kotaRepo = RefKotaRepository(Dio());
+  final locationRepository = Get.find<MasterLokasiRepository>();
 
   final formKey = GlobalKey<FormState>();
   var isLoading = false.obs;
@@ -51,10 +50,14 @@ class LaporanFormController extends GetxController {
   var selectedKecamatan = Rx<DistrictModel?>(null);
   var selectedDesa = Rx<VillageModel?>(null);
 
+  var latitude = 0.0.obs;
+  var longitude = 0.0.obs;
+
   @override
   void onInit() {
     super.onInit();
-    // loadKabupaten();
+    loadKabupaten();
+    getLocation();
   }
 
   @override
@@ -69,15 +72,30 @@ class LaporanFormController extends GetxController {
   }
 
   Future<void> loadKabupaten() async {
-    kabupatenList.value = await kotaRepo.getKabupaten();
+    var userToken = await secureStorage.getString(key: USER_TOKEN);
+
+    var response = await locationRepository.getRegency(userToken!, "15");
+    if (response!.status == 'success') {
+      kabupatenList.value = response.data!;
+    }
   }
 
   Future<void> loadKecamatan(String regencyId) async {
-    kecamatanList.value = await kotaRepo.getKecamatan(regencyId);
+    var userToken = await secureStorage.getString(key: USER_TOKEN);
+
+    var response = await locationRepository.getDistrict(userToken!, regencyId);
+    if (response!.status == 'success') {
+      kecamatanList.value = response.data!;
+    }
   }
 
   Future<void> loadDesa(String districtId) async {
-    desaList.value = await kotaRepo.getDesa(districtId);
+    var userToken = await secureStorage.getString(key: USER_TOKEN);
+
+    var response = await locationRepository.getVillage(userToken!, districtId);
+    if (response!.status == 'success') {
+      desaList.value = response.data!;
+    }
   }
 
   void onSelectKabupaten(RegencyModel? value) {
@@ -134,7 +152,7 @@ class LaporanFormController extends GetxController {
     if (!validateForm()) {
       return; // hentikan jika tidak valid
     }
-    
+
     var userToken = await secureStorage.getString(key: USER_TOKEN);
     isLoading(true);
 
@@ -151,6 +169,7 @@ class LaporanFormController extends GetxController {
       "umur_krt": umurKrtc.text,
       "jumlah_anggota_rt": jumlahAnggotaC.text,
       "jumlah_keluarga": jumlahKeluargaC.text,
+      "lat_lon": "${latitude.value},${longitude.value}",
     };
 
     final formData = dio.FormData();
@@ -187,5 +206,13 @@ class LaporanFormController extends GetxController {
     }
 
     isLoading(false);
+  }
+
+  Future<void> getLocation() async {
+    final position = await LocationService.getCurrentPosition();
+    latitude.value = position.latitude;
+    longitude.value = position.longitude;
+    print(latitude.value);
+    print(longitude.value);
   }
 }

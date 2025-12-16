@@ -36,8 +36,8 @@ class LoginView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      LOGO,
-                      width: 100,
+                      LOGO_LIGH,
+                      width: 200,
                     ),
                     const SizedBox(height: 10),
                     Text(
@@ -46,7 +46,7 @@ class LoginView extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      "E-RTLH Mobile ",
+                      "E-Damaja Mobile ",
                       style: labelTitleStyle.copyWith(color: colorWhiteF3),
                     ),
                   ],

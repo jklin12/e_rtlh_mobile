@@ -32,7 +32,7 @@ class RegisterView extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back, color: Colors.white),
                     onPressed: () => Navigator.pop(context),
                   ),
-                  const Text("Daftar Akun E-RTLH",
+                  const Text("Daftar Akun E-Damaja",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,

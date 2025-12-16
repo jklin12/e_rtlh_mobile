@@ -23,13 +23,10 @@ class HomeView extends StatelessWidget {
         
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(
-            LOGO,
-          ),
+        leading: Image.asset(
+          LOGO,
         ),
-        title: Text("E-RTLH Jambi", style: titleStyle),
+        title: Text("E-Damaja Jambi", style: titleStyle),
         /*actions: [
           IconButton(
             icon: Icon(Icons.account_circle, color: colorPrimary, size: 30),

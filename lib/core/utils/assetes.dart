@@ -2,6 +2,7 @@ const String _IMAGE_PATH = 'assets/images/';
 //const String _GIF_PATH = 'assets/gifs/';
 
 const String LOGO = '${_IMAGE_PATH}logo.png';
+const String LOGO_LIGH = '${_IMAGE_PATH}logo_ligh.png';
 const String PROFILE = '${_IMAGE_PATH}profile.png';
 const String IMG_MAINTENANCE = '${_IMAGE_PATH}img_maintenance.png';
 const String LOGIN_BG = '${_IMAGE_PATH}login_bg.jpg';
