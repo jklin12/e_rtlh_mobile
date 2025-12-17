@@ -1,4 +1,4 @@
-package com.example.e_rtlh_mobile
+package com.technophoria.e_damaja_jambi
 
 import io.flutter.embedding.android.FlutterActivity
 
